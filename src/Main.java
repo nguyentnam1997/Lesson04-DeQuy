@@ -16,6 +16,9 @@ public class Main {
 //            nums.add(i + 1);
 //        }
 //        System.out.println(Arrays.toString(nums.toArray()));
-        System.out.println(0 % 1);
+        //System.out.println(0 % 1);
+        Solution solution = new Solution();
+        int k = 2;
+        System.out.println(solution.findTheWinner(5, k));
     }
 }
