@@ -59,4 +59,39 @@ public class Solution {
         }
         return findTheWinner1(nums, k);
     }
+    public String decodeString(String s) {
+        int count = 0;
+        int left = 1;
+        int right = 0;
+        StringBuilder replaceStr = new StringBuilder();
+        String targetStr = "";
+        for(int i = 1; i < s.length(); i++) {
+            if(s.charAt(i) == '[') {
+                left = i;
+                count = s.charAt(i - 1) - '0';
+                continue;
+            }
+            if(s.charAt(i) == ']') {
+                right = i;
+                break;
+            }
+        }
+        if(left == 1 && right == 0) {
+            return s;
+        }
+        targetStr = s.substring(left - 1, right + 1);
+        for(int i = 0; i < targetStr.length(); i++) {
+            if(targetStr.charAt(i) == '[') {
+                replaceStr = new StringBuilder(targetStr.substring(targetStr.indexOf('[') + 1, targetStr.length() - 1));
+                break;
+            }
+        }
+        //replaceStr = targetStr.substring(2, targetStr.length() - 1);
+        String tmpStr = replaceStr.toString();
+        for(int i = 1; i < count; i++) {
+            replaceStr.append(tmpStr);
+        }
+        s = s.replace(targetStr, replaceStr.toString());
+        return decodeString(s);
+    }
 }
